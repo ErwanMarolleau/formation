@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Liste des matières</title>
+</h:head>
+<h:body>
+
+	<p:panel header="Liste des matières">
+		<h:form id="formulaire">
+			<p:growl id="growl" showDetail="true" sticky="true" />  
+<!-- 			<h:outputText value="#{matiereBean.messageErreur}" /> -->
+			
+			<p:dataTable value="#{matiereBean.matieres}" var="matiere">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['matieres.headers.code']}" />
+					</f:facet>
+					<h:outputText value="#{matiere.code}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['matieres.headers.intitule']}" />
+					</f:facet>
+					<h:outputText value="#{matiere.intitule}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{msg['matieres.headers.duree']}" />
+					</f:facet>
+					<h:outputText value="#{matiere.duree}" />
+				</p:column>
+				<p:column>
+					<p:commandButton value="Modifier" action="#{matiereBean.edit(matiere.code)}" ajax="false">
+<!-- 						<f:setPropertyActionListener target="#{matiereBean.matiereCode}" -->
+<!-- 							value="#{matiere.code}" /> -->
+					</p:commandButton>
+				</p:column>
+				<p:column>
+					<p:commandButton value="Supprimer" action="#{matiereBean.delete}" ajax="false">
+						<f:setPropertyActionListener target="#{matiereBean.matiereCode}"
+							value="#{matiere.code}" />
+					</p:commandButton>
+				</p:column>
+	<!-- 			<h:column> -->
+	<!-- 				<h:commandLink value="Supprimer" action="#{matiereBean.delete}"> -->
+	<!-- 					<f:setPropertyActionListener target="#{matiereBean.matiereId}" -->
+	<!-- 						value="#{matiere.id}" /> -->
+	<!-- 				</h:commandLink> -->
+	<!-- 			</h:column> -->
+			</p:dataTable>
+			<p:commandButton value="Ajouter" action="#{matiereBean.add}" ajax="false" />
+		</h:form>
+	</p:panel>
+</h:body>
+</html>
+
+
+
